@@ -16,21 +16,25 @@
           <h1 class="txt-titulo">INFORMAÇÕES EM TEMPO REAL CORONA VÍRUS</h1>
         </div>
         <div class="titulo">
-          <div class="selecionar-pais">
-            <form class="form-group">
-              <v-row align="center">
-                <v-col cols="12">
-                  <select class="form-control" v-model="paisSelecionado" @change="BuscarDados(paisSelecionado)" style="width:100%">
-                    <option :value="paisSelecionado">Outros Países</option>
-                    <option v-for="pais in paises" :value="pais" :key="pais">{{pais}}</option>
-                  </select>
-                </v-col>
-              </v-row>
-              </form>
+          <div class="form-group selecionar-pais">
+            <form class="escolherPais text-center">
+              <div class="form-group">
+
+              <v-col class="d-flex" cols="12" sm="12">
+        <v-select
+          :items="paises"
+          label=""
+          v-model="paisSelecionado"
+          @change="BuscarDados(paisSelecionado, true)"
+          dense
+        ></v-select>
+      </v-col>
+              </div>
+            </form>
           </div>
         </div>
-        <div class="row shadow p-3 mb-5 bg-white rounded">
-                    <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-4">
             <div class="container card shadow p-3 mb-5 bg-white rounded">
               <div class="card-title mb-2">
                 <h2>PAÍS</h2>
@@ -38,7 +42,6 @@
               <div class="card-body">
                 <h2 class="card-h2 mb-5" style="text-transform: uppercase">{{paisSelecionado}}</h2>
               </div>
-
               <!-- <div class="card img-fluid">
                 <img
                   class="card-img-top"
@@ -57,15 +60,6 @@
               <div class="card-body">
                 <h2 class="card-h2 mb-5">{{dados.cases}}</h2>
               </div>
-
-              <!-- <div class="card img-fluid">
-                <img
-                  class="card-img-top"
-                  src="../assets/1.jpg"
-                  alt="Card image"
-                  style="width:100%;"
-                />
-              </div>-->
             </div>
           </div>
           <div class="col-md-4">
@@ -131,7 +125,7 @@
           <div class="col-md-4">
             <div class="container card shadow p-3 mb-5 bg-white rounded">
               <div class="card-title mb-2">
-                <h2>CASOS A CADA 1M</h2>
+                <h3>CASOS A CADA 1 MILHÃO DE HABITANTES</h3>
               </div>
               <div class="card-body">
                 <h2 class="card-h2 mb-5">{{dados.casesPerOneMillion}}</h2>
@@ -165,25 +159,32 @@ export default {
   },
   mounted() {
     this.paisSelecionado = "Brazil";
-    this.BuscarDados(this.paisSelecionado);
+    this.BuscarDados(this.paisSelecionado, true);
     this.BuscarPaises();
+    setInterval(() => {
+      this.BuscarDados(this.paisSelecionado, false);
+    }, 5000);
   },
   watch: {
-    dialog(val) {
-      if (!val) return;
-      setTimeout(() => (this.dialog = false), 4000);
-    }
+    // dados: function (newQuestion, oldQuestion) {
+    //   console.log('dados mudou')
+    //   console.log(newQuestion)
+    //   console.log(oldQuestion)
+    // }
   },
   methods: {
-    BuscarDados(paisSelecionado) {
+    BuscarDados(paisSelecionado, load) {
+      this.dialog = load;
       this.axios
         .get("/" + paisSelecionado)
         .then(response => {
           this.dados = response.data;
-          setTimeout(() => (this.dialog = false), 2000);
+          setTimeout(() => (this.dialog = false), 1000);
         })
         .catch(error => {
           console.log(error);
+          this.Msg("Sem conexão com a internet", "error");
+          location.reload();
         });
     },
     BuscarPaises() {
@@ -203,12 +204,6 @@ export default {
       Swal.fire({
         position: "center",
         showConfirmButton: false,
-        html:
-          "<v-progress-circular" +
-          ':size="50"' +
-          'color="primary"' +
-          "indeterminate" +
-          "></v-progress-circular>",
         icon: icon,
         text: msg,
         timer: 2000
@@ -242,9 +237,22 @@ card-body {
 }
 .titulo {
   padding: 15px;
-  margin: 15px;
+  margin-top: 15px;
   min-height: 50px;
   font-size: 1.5rem;
   background-color: #e2e8f0;
+}
+.txt-titulo {
+  font-size: 2.2rem;
+}
+.escolherPais{
+
+}
+
+option{
+  margin-left: 10px;
+}
+.sel{
+  padding-left: 10px;
 }
 </style>
