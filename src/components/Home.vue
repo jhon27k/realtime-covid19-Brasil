@@ -225,7 +225,7 @@ export default {
 }
 
 .card {
-  background-color: #e2e8f0;
+  background-color: #d8dde2;
   color: #718096;
   font-size: 1.3rem;
 }
@@ -245,6 +245,6 @@ card-body {
   margin: 15px;
   min-height: 50px;
   font-size: 1.5rem;
-  background-color: #e2e8f0;
+  background-color: #d8dde2;
 }
 </style>
