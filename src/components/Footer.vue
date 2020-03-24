@@ -3,7 +3,7 @@
     <v-card class="flex" flat tile>
       <v-card-title class="footer1">
         <div>
-          <span class="subheading" style="font-size: 0.6rem">Fonte: coronavirus-19-api.herokuapp.com</span>
+          <span class="subheading mt-2" style="font-size: 0.5rem">Fonte: coronavirus-19-api.herokuapp</span>
         </div>
       </v-card-title>
       <v-card-actions class="justify-center">
