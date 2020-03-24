@@ -232,7 +232,7 @@ export default {
     this.BuscarPaises();
     setInterval(() => {
       this.BuscarDados(this.paisSelecionado, true);
-    }, 60000);
+    }, 50000);
   },
   watch: {
     // dados: function (newQuestion, oldQuestion) {
@@ -314,8 +314,6 @@ export default {
 }
 .txt-titulo {
   font-size: 2.2rem;
-}
-.escolherPais {
 }
 
 option {
