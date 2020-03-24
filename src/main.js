@@ -3,15 +3,13 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
-import axios from "axios"
-import VueAxios from 'vue-axios'
-// import VueSweetalert2 from 'vue-sweetalert2';
-// import swal from "sweetalert2"
+import axios from "axios";
+import VueAxios from "vue-axios";
 
- 
-// Vue.use(VueSweetalert2);
+import "@fortawesome/fontawesome-free/css/all.css";
+import "@fortawesome/fontawesome-free/js/all.js";
 Vue.config.productionTip = false;
-Vue.use(VueAxios, axios)
+Vue.use(VueAxios, axios);
 
 axios.defaults.baseURL = "https://coronavirus-19-api.herokuapp.com/countries";
 

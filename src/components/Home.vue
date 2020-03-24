@@ -13,22 +13,21 @@
       </div>
       <div class="container-fluid text-center" v-if="!dialog">
         <div class="titulo">
-          <h1 class="txt-titulo">INFORMAÇÕES EM TEMPO REAL CORONA VÍRUS</h1>
+          <h1 class="txt-titulo">INFORMAÇÕES SOBRE O CORONA VÍRUS EM TEMPO REAL</h1>
         </div>
-        <div class="titulo">
+        <div class="col-md-4">
           <div class="form-group selecionar-pais">
             <form class="escolherPais text-center">
               <div class="form-group">
-
-              <v-col class="d-flex" cols="12" sm="12">
-        <v-select
-          :items="paises"
-          label=""
-          v-model="paisSelecionado"
-          @change="BuscarDados(paisSelecionado, true)"
-          dense
-        ></v-select>
-      </v-col>
+                <v-col class="d-flex" cols="12" sm="12">
+                  <v-select
+                    :items="paises"
+                    label=""
+                    v-model="paisSelecionado"
+                    @change="BuscarDados(paisSelecionado, true)"
+                    dense
+                  ></v-select>
+                </v-col>
               </div>
             </form>
           </div>
@@ -58,7 +57,8 @@
                 <h2>CASOS CONFIRMADOS</h2>
               </div>
               <div class="card-body">
-                <h2 class="card-h2 mb-5">{{dados.cases}}</h2>
+                <h2 class="card-h2 mb-5">{{dados.cases}}
+                   </h2>
               </div>
             </div>
           </div>
@@ -134,6 +134,9 @@
           </div>
         </div>
         <!-- FIM CARDS -->
+        <div class="">
+        <Footer />
+        </div>
       </div>
     </template>
   </v-container>
@@ -141,10 +144,12 @@
 
 <script>
 const Swal = require("sweetalert2");
+import Footer from "./Footer.vue";
 // var VueAuth = require('vue-auth')
 
 export default {
   name: "Principal",
+  components: { Footer },
   props: {
     msg: String
   },
@@ -231,10 +236,11 @@ export default {
   vertical-align: middle;
   line-height: 60px;
 }
-card-body {
-  background-color: #fff5f5;
-  color: #e53e3e;
+.card-body {
+  /* background-color: #fff5f5; */
+  color: #212121;
 }
+
 .titulo {
   padding: 15px;
   margin-top: 15px;
@@ -245,14 +251,14 @@ card-body {
 .txt-titulo {
   font-size: 2.2rem;
 }
-.escolherPais{
-
+.escolherPais {
 }
 
-option{
+option {
   margin-left: 10px;
 }
-.sel{
+.sel {
   padding-left: 10px;
 }
+
 </style>
