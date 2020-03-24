@@ -6,14 +6,20 @@
           <v-card color="primary" dark>
             <v-card-text>
               Carregando Dados...
-              <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
+              <v-progress-linear
+                indeterminate
+                color="white"
+                class="mb-0"
+              ></v-progress-linear>
             </v-card-text>
           </v-card>
         </v-dialog>
       </div>
       <div class="container-fluid text-center" v-if="!dialog">
         <div class="titulo">
-          <h1 class="txt-titulo">INFORMAÇÕES SOBRE O CORONA VÍRUS EM TEMPO REAL</h1>
+          <h1 class="txt-titulo">
+            INFORMAÇÕES SOBRE O CORONA VÍRUS EM TEMPO REAL
+          </h1>
         </div>
         <div class="col-md-4">
           <div class="form-group selecionar-pais">
@@ -22,7 +28,7 @@
                 <v-col class="d-flex" cols="12" sm="12">
                   <v-select
                     :items="paises"
-                    label=""
+                    label="Selecione o país"
                     v-model="paisSelecionado"
                     @change="BuscarDados(paisSelecionado, true)"
                     dense
@@ -39,16 +45,17 @@
                 <h2>PAÍS</h2>
               </div>
               <div class="card-body">
-                <h2 class="card-h2 mb-5" style="text-transform: uppercase">{{paisSelecionado}}</h2>
+                <h2 class="card-h2 mb-5" style="text-transform: uppercase">
+                  {{ paisSelecionado }}
+                </h2>
+                <div class="card img-fluid">
+                  <img
+                    class="card-img-top"
+                    src="../assets/64/iconfinder_World_Wide_Virus_5958613.png"
+                    alt="Card image"
+                  />
+                </div>
               </div>
-              <!-- <div class="card img-fluid">
-                <img
-                  class="card-img-top"
-                  src="../assets/1.jpg"
-                  alt="Card image"
-                  style="width:100%;"
-                />
-              </div>-->
             </div>
           </div>
           <div class="col-md-4">
@@ -57,8 +64,14 @@
                 <h2>CASOS CONFIRMADOS</h2>
               </div>
               <div class="card-body">
-                <h2 class="card-h2 mb-5">{{dados.cases}}
-                   </h2>
+                <h2 class="card-h2 mb-5">{{ dados.cases }}</h2>
+              </div>
+              <div class="card img-fluid">
+                <img
+                  class="card-img-top"
+                  src="../assets/64/5803966 - checklist clipboard task todo.png"
+                  alt="Card image"
+                />
               </div>
             </div>
           </div>
@@ -68,7 +81,14 @@
                 <h2>CASOS HOJE</h2>
               </div>
               <div class="card-body">
-                <h2 class="card-h2 mb-5">{{dados.todayCases}}</h2>
+                <h2 class="card-h2 mb-5">{{ dados.todayCases }}</h2>
+              </div>
+              <div class="card img-fluid">
+                <img
+                  class="card-img-top"
+                  src="../assets/64/5803979 - fever sick temperature termometer.png"
+                  alt="Card image"
+                />
               </div>
             </div>
           </div>
@@ -78,7 +98,14 @@
                 <h2>MORTES</h2>
               </div>
               <div class="card-body">
-                <h2 class="card-h2 mb-5">{{dados.deaths}}</h2>
+                <h2 class="card-h2 mb-5">{{ dados.deaths }}</h2>
+              </div>
+              <div class="card img-fluid">
+                <img
+                  class="card-img-top"
+                  src="../assets/64/iconfinder__Graveyard_754630.png"
+                  alt="Card image"
+                />
               </div>
             </div>
           </div>
@@ -88,7 +115,14 @@
                 <h2>MORTES HOJE</h2>
               </div>
               <div class="card-body">
-                <h2 class="card-h2 mb-5">{{dados.todayDeaths}}</h2>
+                <h2 class="card-h2 mb-5">{{ dados.todayDeaths }}</h2>
+              </div>
+              <div class="card img-fluid">
+                <img
+                  class="card-img-top"
+                  src="../assets/64/iconfinder_death_5932473.png"
+                  alt="Card image"
+                />
               </div>
             </div>
           </div>
@@ -98,7 +132,14 @@
                 <h2>RECUPERADOS</h2>
               </div>
               <div class="card-body">
-                <h2 class="card-h2 mb-5">{{dados.recovered}}</h2>
+                <h2 class="card-h2 mb-5">{{ dados.recovered }}</h2>
+              </div>
+              <div class="card img-fluid">
+                <img
+                  class="card-img-top"
+                  src="../assets/64/5803987 - coronavirus covid mask mask hygiene medical.png"
+                  alt="Card image"
+                />
               </div>
             </div>
           </div>
@@ -108,7 +149,14 @@
                 <h2>ATIVOS</h2>
               </div>
               <div class="card-body">
-                <h2 class="card-h2 mb-5">{{dados.active}}</h2>
+                <h2 class="card-h2 mb-5">{{ dados.active }}</h2>
+              </div>
+              <div class="card img-fluid">
+                <img
+                  class="card-img-top"
+                  src="../assets/64/5803968 - cold cough flu sore throat.png"
+                  alt="Card image"
+                />
               </div>
             </div>
           </div>
@@ -118,24 +166,38 @@
                 <h2>CASOS CRÍTICOS</h2>
               </div>
               <div class="card-body">
-                <h2 class="card-h2 mb-5">{{dados.critical}}</h2>
+                <h2 class="card-h2 mb-5">{{ dados.critical }}</h2>
+              </div>
+              <div class="card img-fluid">
+                <img
+                  class="card-img-top"
+                  src="../assets/64/5803985 - bed coronavirus hospital.png"
+                  alt="Card image"
+                />
               </div>
             </div>
           </div>
           <div class="col-md-4">
             <div class="container card shadow p-3 mb-5 bg-white rounded">
               <div class="card-title mb-2">
-                <h3>CASOS A CADA 1 MILHÃO DE HABITANTES</h3>
+                <h3>CASOS A CADA 1 MILHÃO</h3>
               </div>
               <div class="card-body">
-                <h2 class="card-h2 mb-5">{{dados.casesPerOneMillion}}</h2>
+                <h2 class="card-h2 mb-5">{{ dados.casesPerOneMillion }}</h2>
+              </div>
+              <div class="card img-fluid">
+                <img
+                  class="card-img-top"
+                  src="../assets/64/iconfinder_Spread-virus-carrier-people-Contagious_5859162.png"
+                  alt="Card image"
+                />
               </div>
             </div>
           </div>
         </div>
         <!-- FIM CARDS -->
         <div class="">
-        <Footer />
+          <Footer />
         </div>
       </div>
     </template>
@@ -260,5 +322,4 @@ option {
 .sel {
   padding-left: 10px;
 }
-
 </style>
