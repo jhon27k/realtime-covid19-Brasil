@@ -1,16 +1,15 @@
 <template>
   <v-footer height="auto">
     <v-card class="flex" flat tile>
-      <v-card-title class="footer1">
-        <span class="subheading" style="font-size: 12px">Fonte: https://coronavirus-19.com</span>
+      <v-card-title class="footer1 mb-4">
+        <span class="subheading" style="font-size: 0.6rem">Fonte: https://coronavirus-19.com</span>
         <v-spacer></v-spacer>
-        <v-btn dark icon>
-          <v-icon size="24px">{{ icon }}</v-icon>
-        </v-btn>
       </v-card-title>
-      <v-card-actions class="justify-center">
+      <v-card-actions class="justify-center mt-4">
+        <div class="justify-center mt-4">
         &copy;2020 —
         <strong>Jonathas Mendonça / Klemerson Castro</strong>
+        </div>
       </v-card-actions>
     </v-card>
   </v-footer>

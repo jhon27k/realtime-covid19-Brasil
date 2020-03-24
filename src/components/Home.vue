@@ -5,7 +5,7 @@
         <v-dialog v-model="dialog" hide-overlay persistent width="300">
           <v-card color="primary" dark>
             <v-card-text>
-              Carregando Dados...
+              Buscando Dados...
               <v-progress-linear
                 indeterminate
                 color="white"
@@ -196,6 +196,9 @@
           </div>
         </div>
         <!-- FIM CARDS -->
+        <div>
+          <Recomendacoes/>
+        </div>
         <div class="">
           <Footer />
         </div>
@@ -207,11 +210,12 @@
 <script>
 const Swal = require("sweetalert2");
 import Footer from "./Footer.vue";
+import Recomendacoes from "./Recomendacoes"
 // var VueAuth = require('vue-auth')
 
 export default {
   name: "Principal",
-  components: { Footer },
+  components: { Footer, Recomendacoes },
   props: {
     msg: String
   },
@@ -219,18 +223,16 @@ export default {
     return {
       dados: [],
       dialog: true,
-      i: 0,
       paises: [],
-      paisSelecionado: ""
+      paisSelecionado: "Brazil"
     };
   },
   mounted() {
-    this.paisSelecionado = "Brazil";
     this.BuscarDados(this.paisSelecionado, true);
     this.BuscarPaises();
     setInterval(() => {
-      this.BuscarDados(this.paisSelecionado, false);
-    }, 5000);
+      this.BuscarDados(this.paisSelecionado, true);
+    }, 60000);
   },
   watch: {
     // dados: function (newQuestion, oldQuestion) {
