@@ -6,20 +6,14 @@
           <v-card color="primary" dark>
             <v-card-text>
               Buscando Dados...
-              <v-progress-linear
-                indeterminate
-                color="white"
-                class="mb-0"
-              ></v-progress-linear>
+              <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
             </v-card-text>
           </v-card>
         </v-dialog>
       </div>
       <div class="container-fluid text-center" v-if="!dialog">
         <div class="titulo">
-          <h1 class="txt-titulo">
-            INFORMAÇÕES SOBRE O CORONA VÍRUS EM TEMPO REAL
-          </h1>
+          <h1 class="txt-titulo">INFORMAÇÕES SOBRE O CORONA VÍRUS EM TEMPO REAL</h1>
         </div>
         <div class="col-md-4">
           <div class="form-group selecionar-pais">
@@ -45,9 +39,7 @@
                 <h2>PAÍS</h2>
               </div>
               <div class="card-body">
-                <h2 class="card-h2 mb-5" style="text-transform: uppercase">
-                  {{ paisSelecionado }}
-                </h2>
+                <h2 class="card-h2 mb-5" style="text-transform: uppercase">{{ paisSelecionado }}</h2>
                 <div class="card img-fluid">
                   <img
                     class="card-img-top"
@@ -197,9 +189,9 @@
         </div>
         <!-- FIM CARDS -->
         <div>
-          <Recomendacoes/>
+          <Recomendacoes />
         </div>
-        <div class="">
+        <div class>
           <Footer />
         </div>
       </div>
@@ -210,7 +202,8 @@
 <script>
 const Swal = require("sweetalert2");
 import Footer from "./Footer.vue";
-import Recomendacoes from "./Recomendacoes"
+import Recomendacoes from "./Recomendacoes";
+
 // var VueAuth = require('vue-auth')
 
 export default {
