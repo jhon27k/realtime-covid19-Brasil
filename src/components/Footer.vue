@@ -1,15 +1,15 @@
 <template>
   <v-footer height="auto">
-    <v-card class="flex" flat tile>
+    <v-card class="flex card_" flat tile>
       <v-card-title class="footer1">
         <div>
-          <span class="subheading" style="font-size: 0.6rem">Fonte: coronavirus-19-api.herokuapp.com</span>
+          <span class="subheading mt-3" style="font-size: 0.5rem">Fonte: coronavirus-19-api.herokuapp</span>
         </div>
       </v-card-title>
       <v-card-actions class="justify-center">
         <div class="justify-center">
           &copy;2020 —
-          <strong>Jonathas Mendonça / Klemerson Castro</strong>
+          <strong>Jonathas Mendonça</strong>
         </div>
       </v-card-actions>
       <div class="mt-4">

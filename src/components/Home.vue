@@ -13,8 +13,10 @@
       </div>
       <div class="container-fluid text-center" v-if="!dialog">
         <div class="titulo">
-          <h1 class="txt-titulo">INFORMAÇÕES SOBRE O CORONA VÍRUS EM TEMPO REAL</h1>
+          <h1 class="txt-titulo">INFORMAÇÕES DO CORONA VÍRUS (COVID-19) EM TEMPO REAL</h1>
         </div>
+
+        <!-- BODY -->
         <div class="col-md-4">
           <div class="form-group selecionar-pais">
             <form class="escolherPais text-center">
@@ -188,6 +190,95 @@
           </div>
         </div>
         <!-- FIM CARDS -->
+        <div class="container-fluid text-center mb-4" v-if="!dialog">
+          <div class="titulo total">
+            <h1 class="txt-titulo">TOTAL NO MUNDO</h1>
+          </div>
+          <div class="titulo">
+            <!-- <h1 class="txt-titulo">INFORMAÇÕES GERAIS EM TODO O MUNDO</h1> -->
+            <div class="row geral">
+              <div class="col-md-2">
+                <div class="container card shadow p-3 mb-5 bg-white rounded">
+                  <div class="card-title mb-2">
+                    <h2>CASOS</h2>
+                  </div>
+                  <div class="card-body">
+                    <h2 class="card-h2 mb-5" style="text-transform: uppercase"></h2>
+                    <div class="card img-fluid">
+                      <p>{{total[0].total_cases | number}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="container card shadow p-3 mb-5 bg-white rounded">
+                  <div class="card-title mb-2">
+                    <h2>MORTES</h2>
+                  </div>
+                  <div class="card-body">
+                    <h2 class="card-h2 mb-5" style="text-transform: uppercase"></h2>
+                    <div class="card img-fluid">
+                      <p>{{total[0].total_deaths | number}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="container card shadow p-3 mb-5 bg-white rounded">
+                  <div class="card-title mb-2">
+                    <h2>CASOS HOJE</h2>
+                  </div>
+                  <div class="card-body">
+                    <h2 class="card-h2 mb-5" style="text-transform: uppercase"></h2>
+                    <div class="card img-fluid">
+                      <p>{{total[0].total_new_cases_today | number}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="container card shadow p-3 mb-5 bg-white rounded">
+                  <div class="card-title mb-2">
+                    <h2>MORTES HOJE</h2>
+                  </div>
+                  <div class="card-body">
+                    <h2 class="card-h2 mb-5" style="text-transform: uppercase"></h2>
+                    <div class="card img-fluid">
+                      <p>{{total[0].total_new_deaths_today | number}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="container card shadow p-3 mb-5 bg-white rounded">
+                  <div class="card-title mb-2">
+                    <h2>CASOS ATIVOS</h2>
+                  </div>
+                  <div class="card-body">
+                    <h2 class="card-h2 mb-5" style="text-transform: uppercase"></h2>
+                    <div class="card img-fluid">
+                      <p>{{total[0].total_active_cases | number}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="container card shadow p-3 mb-5 bg-white rounded">
+                  <div class="card-title mb-2">
+                    <h2>RECUPERADOS</h2>
+                  </div>
+                  <div class="card-body">
+                    <h2 class="card-h2 mb-5" style="text-transform: uppercase"></h2>
+                    <div class="card img-fluid">
+                      <p>{{total[0].total_recovered | number}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div>
           <Recomendacoes />
         </div>
@@ -217,15 +308,27 @@ export default {
       dados: [],
       dialog: true,
       paises: [],
-      paisSelecionado: "Brazil"
+      paisSelecionado: "Brazil",
+      total: []
     };
+  },
+  filters: {
+    number(n) {
+      return n.toLocaleString();
+    }
   },
   mounted() {
     this.BuscarDados(this.paisSelecionado, true);
     this.BuscarPaises();
+    this.buscarTotal();
+
     setInterval(() => {
-      this.BuscarDados(this.paisSelecionado, true);
+      this.BuscarDados(this.paisSelecionado, false);
+      this.buscarTotal();
     }, 50000);
+    // setInterval(() => {
+    //   this.buscarTotal();
+    // }, 10000);
   },
   watch: {
     // dados: function (newQuestion, oldQuestion) {
@@ -262,6 +365,20 @@ export default {
           console.log(error);
         });
     },
+    buscarTotal() {
+      this.axios({
+        method: "get",
+        url: "https://thevirustracker.com/free-api?global=stats",
+        baseURL: "/"
+      })
+        .then(response => {
+          this.total = response.data.results;
+          console.log(this.total[0]);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
     Msg(msg, icon) {
       Swal.fire({
         position: "center",
@@ -279,6 +396,11 @@ export default {
 #dados1 {
   display: flex;
   align-content: center;
+}
+
+.total {
+  background-color: #5e1e1e !important;
+  color: white;
 }
 
 .card {
@@ -302,11 +424,8 @@ export default {
   padding: 15px;
   margin-top: 15px;
   min-height: 50px;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   background-color: #d8dde2;
-}
-.txt-titulo {
-  font-size: 2.2rem;
 }
 
 option {
