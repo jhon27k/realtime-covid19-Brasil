@@ -1,6 +1,4 @@
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ?
-    '/realtime-covid19-Brasil/' :
-    '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/realtime-covid19-Brasil/' : '/',
   transpileDependencies: ["vuetify"]
 };

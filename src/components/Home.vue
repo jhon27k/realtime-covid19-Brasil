@@ -205,7 +205,7 @@
                   <div class="card-body">
                     <h2 class="card-h2 mb-5" style="text-transform: uppercase"></h2>
                     <div class="card img-fluid">
-                      <p>{{total[0].total_cases | number}}</p>
+                      <p>{{total.TotalConfirmed | number}}</p>
                     </div>
                   </div>
                 </div>
@@ -218,7 +218,7 @@
                   <div class="card-body">
                     <h2 class="card-h2 mb-5" style="text-transform: uppercase"></h2>
                     <div class="card img-fluid">
-                      <p>{{total[0].total_deaths | number}}</p>
+                      <p>{{total.TotalDeaths | number}}</p>
                     </div>
                   </div>
                 </div>
@@ -231,7 +231,7 @@
                   <div class="card-body">
                     <h2 class="card-h2 mb-5" style="text-transform: uppercase"></h2>
                     <div class="card img-fluid">
-                      <p>{{total[0].total_new_cases_today | number}}</p>
+                      <p>{{total.NewConfirmed | number}}</p>
                     </div>
                   </div>
                 </div>
@@ -244,7 +244,7 @@
                   <div class="card-body">
                     <h2 class="card-h2 mb-5" style="text-transform: uppercase"></h2>
                     <div class="card img-fluid">
-                      <p>{{total[0].total_new_deaths_today | number}}</p>
+                      <p>{{total.NewDeaths | number}}</p>
                     </div>
                   </div>
                 </div>
@@ -252,12 +252,12 @@
               <div class="col-md-2">
                 <div class="container card shadow p-3 mb-5 bg-white rounded">
                   <div class="card-title mb-2">
-                    <h2>CASOS ATIVOS</h2>
+                    <h2>RECUPERADOS HOJE</h2>
                   </div>
                   <div class="card-body">
                     <h2 class="card-h2 mb-5" style="text-transform: uppercase"></h2>
                     <div class="card img-fluid">
-                      <p>{{total[0].total_active_cases | number}}</p>
+                      <p>{{total.NewRecovered | number}}</p>
                     </div>
                   </div>
                 </div>
@@ -265,12 +265,12 @@
               <div class="col-md-2">
                 <div class="container card shadow p-3 mb-5 bg-white rounded">
                   <div class="card-title mb-2">
-                    <h2>RECUPERADOS</h2>
+                    <h2>TOTAL RECUPERADOS</h2>
                   </div>
                   <div class="card-body">
                     <h2 class="card-h2 mb-5" style="text-transform: uppercase"></h2>
                     <div class="card img-fluid">
-                      <p>{{total[0].total_recovered | number}}</p>
+                      <p>{{total.TotalRecovered | number}}</p>
                     </div>
                   </div>
                 </div>
@@ -317,15 +317,17 @@ export default {
       return n.toLocaleString();
     }
   },
+  created(){
+    
+  },
   mounted() {
     this.BuscarDados(this.paisSelecionado, true);
     this.BuscarPaises();
     this.buscarTotal();
-
-    setInterval(() => {
-      this.BuscarDados(this.paisSelecionado, false);
-      this.buscarTotal();
-    }, 50000);
+    // setInterval(() => {
+    //   this.BuscarDados(this.paisSelecionado, false);
+    //   this.buscarTotal();
+    // }, 50000);
     // setInterval(() => {
     //   this.buscarTotal();
     // }, 10000);
@@ -368,12 +370,13 @@ export default {
     buscarTotal() {
       this.axios({
         method: "get",
-        url: "https://thevirustracker.com/free-api?global=stats",
+        // url: "https://thevirustracker.com/free-api?global=stats",
+        url: "https://api.covid19api.com/summary",
         baseURL: "/"
       })
         .then(response => {
-          this.total = response.data.results;
-          console.log(this.total[0]);
+          this.total = response.data.Global;
+          console.log(this.total.TotalConfirmed);
         })
         .catch(error => {
           console.log(error);
