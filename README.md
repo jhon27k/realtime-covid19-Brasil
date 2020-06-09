@@ -1,13 +1,16 @@
-# Monitoramento em tempo real do Covid 19.
+## Monitoramento em tempo real Covid 19.
 
-## Link: https://jhon27k.github.io/realtime-covid19-Brasil/
+## Autor: Jonathas Mendonça
 
-## 
+Acesso em: https://jhon27k.github.io/realtime-covid19-Brasil/
 
-<img src="https://drive.google.com/file/d/1S81NK0oJ4aWahlG_O_Mywv_aPjZfQgU1/view?usp=sharing">
+<img src="https://cbpaag.bn.files.1drv.com/y4mYpVcvoGLn84aDwwWEc_oFTbU8JsYrfmxkg-GlvUyY9cK8vO0rTn27FF71f_TIehQUW3TJICURt6lFzEPzJsdZwI6fb5Nu_9_Z6Pv1x8seODmgydT6b5nBRRnUzXTbnkLyJKUe-Ree5EcR1eWOPCWdFIDJPPMwpsFYMd3N_uNhoy6Z9ETvvrUeovj0YTF569T6hOcoPlAHLM2bogQzq7f6w?width=660&height=536&cropmode=none" width="660" height="536" />
 
-
-# covid-19
+# Tecnologias utilizadas
+### Vue Js
+### Axios
+### Requisições http e consumo de API
+### Css flex-box
 
 ## Project setup
 ```
