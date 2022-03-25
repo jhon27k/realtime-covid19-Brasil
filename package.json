@@ -15,7 +15,7 @@
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.7.0",
     "core-js": "^3.6.4",
-    "electron": "^8.1.1",
+    "electron": "^13.6.6",
     "jquery": "^3.4.1",
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",
